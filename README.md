@@ -30,5 +30,6 @@ scoop bucket add extras && scoop install godot
 ```
 
 
+Visual Studio Extension: 
 - https://marketplace.visualstudio.com/items?itemName=1YiB.rust-bundle
 - https://marketplace.visualstudio.com/items?itemName=dsobotta.godot-rust-vscode
