@@ -1,6 +1,9 @@
+use std::io::SeekFrom;
+
 use godot::global::Error;
 use godot::prelude::*;
 use godot::classes::{CodeEdit, Button, Node};
+use crate::abstract_rust_text_interpretor::AbstractParserNode;
 
 #[derive(GodotClass)]
 #[class(base=Node)]
@@ -18,12 +21,17 @@ struct DoubleConsoleGameCodeEdit {
 
     #[export]
     godot_interpretor: Option<Gd<Node>>,
+
+    #[export]
+    rust_interpretor: Option<Gd<Node>>,
 }
 
 #[godot_api]
 impl DoubleConsoleGameCodeEdit {
     #[signal]
     fn on_submited_text(givent_text: String);
+    #[signal]
+    fn on_parsed_text(givent_text: String);
 
     #[func]
     fn submit_code(&mut self) {
@@ -46,8 +54,16 @@ impl DoubleConsoleGameCodeEdit {
             output.set_text(&parsed_text);
         }
 
-        // Optional: also emit the signal you declared
+        if let Some(mut rust_interpretor) = self.rust_interpretor.as_mut() {
+            let result = rust_interpretor.call("parse", &[code.to_variant()]);
+            let parsed_text: String = result.to();
+            output.set_text(&parsed_text);
+        }
+
+
+
         self.base.to_gd().emit_signal("on_submited_text", &[code.to_variant()]);
+        self.base.to_gd().emit_signal("on_parsed_text", &[output.get_text().to_variant()]); 
     }
 }
 
@@ -62,6 +78,7 @@ impl INode for DoubleConsoleGameCodeEdit {
             output_codeedit: None,
             submit_button: None,
             godot_interpretor: None,
+            rust_interpretor: None,
         }
     }
 
