@@ -4,6 +4,7 @@
 
 [<img width="497" height="271" alt="image" src="https://github.com/user-attachments/assets/918f0ff4-5d38-4753-9e7a-35af01fc3263" />](https://youtu.be/CVSFs-tFjIA?t=173)  
 - 🎥 https://youtu.be/CVSFs-tFjIA?t=173
+  - https://youtu.be/7T7HRiR1_94?t=502 
 - 📕 https://godot-rust.github.io/book/intro/setup.html
 - 🪼 https://github.com/godot-rust/gdext
 - 🪼 https://github.com/godot-rust/demo-projects/
