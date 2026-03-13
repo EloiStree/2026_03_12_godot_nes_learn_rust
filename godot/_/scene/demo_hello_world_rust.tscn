@@ -25,14 +25,15 @@ input_codeedit = NodePath("../CodeEdit")
 output_codeedit = NodePath("../CodeEdit2")
 submit_button = NodePath("../Button")
 godot_interpretor = NodePath("NodeInterpretor")
-rust_interpretor = NodePath("MarkdownParser")
+rust_interpretor = NodePath("CeasarOffsetParser")
 
 [node name="NodeInterpretor" type="Node" parent="CanvasLayer/Control/DoubleConsoleGameCodeEdit" unique_id=1651241600]
 script = ExtResource("2_kibws")
 
 [node name="UpperCaseParser" type="Node" parent="CanvasLayer/Control/DoubleConsoleGameCodeEdit" unique_id=600923914]
 
-[node name="MarkdownParser" type="MarkdownParser" parent="CanvasLayer/Control/DoubleConsoleGameCodeEdit" unique_id=1296870298]
+[node name="CeasarOffsetParser" type="CeasarOffsetParser" parent="CanvasLayer/Control/DoubleConsoleGameCodeEdit" unique_id=1034699098]
+ceasar_offset = 5
 
 [node name="CodeEdit" type="CodeEdit" parent="CanvasLayer/Control" unique_id=1905163009]
 layout_mode = 1

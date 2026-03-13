@@ -24,21 +24,33 @@ impl AbstractParserNode {
 
 #[derive(GodotClass)]
 #[class(base=Node)]
-pub struct MarkdownParser {
+pub struct CeasarOffsetParser {
     base: Base<Node>,
+    #[export]
+    ceasar_offset: i32,
 }
 
 #[godot_api]
-impl INode for MarkdownParser {
+impl INode for CeasarOffsetParser {
     fn init(base: Base<Node>) -> Self {
-        Self { base }
+        Self { base, ceasar_offset: 0 }
     }
 }
 
 #[godot_api]
-impl MarkdownParser {
+impl CeasarOffsetParser {
     #[func]
     fn parse(&self, text: String) -> String {
-        format!("Parsed: {}", text)
+        text.chars()
+            .map(|c| {
+                if c.is_ascii_alphabetic() {
+                    let first = if c.is_ascii_lowercase() { b'a' } else { b'A' };
+                    let offset = (c as u8 - first + self.ceasar_offset as u8) % 26;
+                    (first + offset) as char
+                } else {
+                    c
+                }
+            })
+            .collect()
     }
 }
