@@ -20,10 +20,8 @@ struct DoubleConsoleGameCodeEdit {
     submit_button: Option<Gd<Button>>,
 
     #[export]
-    godot_interpretor: Option<Gd<Node>>,
+    node_with_parse_method: Array<Gd<Node>>,
 
-    #[export]
-    rust_interpretor: Option<Gd<Node>>,
 }
 
 #[godot_api]
@@ -47,19 +45,23 @@ impl DoubleConsoleGameCodeEdit {
 
         let code = input.get_text();
         output.set_text(&code);
-
-        if let Some(mut interpretor) = self.godot_interpretor.as_mut() {
-            let result = interpretor.call("parse", &[code.to_variant()]);
-            let parsed_text: String = result.to();
-            output.set_text(&parsed_text);
+        
+        let mut current_text = code.clone();
+        for i in 0..self.node_with_parse_method.len() {
+            let Some(mut interpretor) = self.node_with_parse_method.get(i) else {
+            godot_warn!("node_with_parse_method at index {i} is None!");
+            continue;
+            };
+            if !interpretor.has_method("parse") {
+            godot_warn!("node_with_parse_method at index {i} does not have a 'parse' method!");
+            continue;
+            }
+            let result = interpretor.call("parse", &[current_text.to_variant()]);
+            current_text = result.to();
         }
+        output.set_text(&current_text);
 
-        if let Some(mut rust_interpretor) = self.rust_interpretor.as_mut() {
-            let result = rust_interpretor.call("parse", &[code.to_variant()]);
-            let parsed_text: String = result.to();
-            output.set_text(&parsed_text);
-        }
-
+        
 
 
         self.base.to_gd().emit_signal("on_submited_text", &[code.to_variant()]);
@@ -77,8 +79,7 @@ impl INode for DoubleConsoleGameCodeEdit {
             input_codeedit: None,
             output_codeedit: None,
             submit_button: None,
-            godot_interpretor: None,
-            rust_interpretor: None,
+            node_with_parse_method: Array::new(),
         }
     }
 

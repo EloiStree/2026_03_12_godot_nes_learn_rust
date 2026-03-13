@@ -1,5 +1,9 @@
 use godot::prelude::*;
 
+/// I wanted to do inheritance here.
+/// But I did not find out how to do it in godot-rust.
+/// So I did not for now.
+
 #[derive(GodotClass)]
 #[class(base=Node)]
 pub struct AbstractParserNode {
@@ -24,21 +28,21 @@ impl AbstractParserNode {
 
 #[derive(GodotClass)]
 #[class(base=Node)]
-pub struct CeasarOffsetParser {
+pub struct RustCeasarOffsetParser {
     base: Base<Node>,
     #[export]
     ceasar_offset: i32,
 }
 
 #[godot_api]
-impl INode for CeasarOffsetParser {
+impl INode for RustCeasarOffsetParser {
     fn init(base: Base<Node>) -> Self {
-        Self { base, ceasar_offset: 0 }
+        Self { base, ceasar_offset: 1 }
     }
 }
 
 #[godot_api]
-impl CeasarOffsetParser {
+impl RustCeasarOffsetParser {
     #[func]
     fn parse(&self, text: String) -> String {
         text.chars()
@@ -52,5 +56,27 @@ impl CeasarOffsetParser {
                 }
             })
             .collect()
+    }
+}
+
+
+#[derive(GodotClass)]
+#[class(base=Node)]
+pub struct RustUpperCaseParser {
+    base: Base<Node>,
+}
+
+#[godot_api]
+impl INode for RustUpperCaseParser {
+    fn init(base: Base<Node>) -> Self {
+        Self { base }
+    }
+}
+
+#[godot_api]
+impl RustUpperCaseParser {
+    #[func]
+    fn parse(&self, text: String) -> String {
+        text.to_uppercase()
     }
 }
