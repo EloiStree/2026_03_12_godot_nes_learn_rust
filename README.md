@@ -9,10 +9,11 @@
 - 🪼 https://github.com/godot-rust/gdext
 - 🪼 https://github.com/godot-rust/demo-projects/
 
-```
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
-```
+
+Install for Window:  
+https://rust-lang.org/tools/install/  
+Learn the basic of Rust:  
+https://rust-lang.org/learn/get-started/  
 
 ```
 winget install -e --id GodotEngine.GodotEngine
@@ -20,7 +21,9 @@ winget install -e --id GodotEngine.GodotEngine
 
 
 [<img width="1038" height="534" alt="choco" src="https://github.com/user-attachments/assets/0833c515-86a7-44ba-a286-de41ae259627" />](https://github.com/chocolatey/choco/releases/tag/2.6.0)  
+Install MSI for Choco:  
 https://github.com/chocolatey/choco/releases/tag/2.6.0  
+
 ```
 choco install godot -y --force
 ```
@@ -28,6 +31,12 @@ choco install godot -y --force
 
 [<img width="869" height="232" alt="scoop" src="https://github.com/user-attachments/assets/f64f8b37-fd4d-438e-94d5-6fed65b416be" />](https://scoop.sh)
 https://scoop.sh
+Install Scoop
+```
+Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
+Invoke-RestMethod -Uri https://get.scoop.sh | Invoke-Expression
+```
+Scoop command
 ```
 scoop bucket add extras && scoop install godot
 ```
