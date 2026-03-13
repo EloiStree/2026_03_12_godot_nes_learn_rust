@@ -41,3 +41,13 @@ https://marketplace.visualstudio.com/items?itemName=geequlim.godot-tools
 https://marketplace.visualstudio.com/items?itemName=dsobotta.godot-rust-vscode  
 [<img width="1299" height="214" alt="image" src="https://github.com/user-attachments/assets/d70200bd-f781-47a3-bee6-fe807702b3a0" />](https://marketplace.visualstudio.com/items?itemName=1YiB.rust-bundle)
 https://marketplace.visualstudio.com/items?itemName=1YiB.rust-bundle  
+
+
+
+
+
+------------
+
+<img width="1140" height="89" alt="image" src="https://github.com/user-attachments/assets/d3072dba-c1ec-4577-babc-3e9b214f1424" />
+<img width="857" height="91" alt="image" src="https://github.com/user-attachments/assets/16502bc8-a077-49cb-b87a-97d2539a00ee" />
+
