@@ -1,9 +1,8 @@
-use std::io::SeekFrom;
+
 
 use godot::global::Error;
 use godot::prelude::*;
 use godot::classes::{CodeEdit, Button, Node};
-use crate::abstract_rust_text_interpretor::AbstractParserNode;
 
 #[derive(GodotClass)]
 #[class(base=Node)]
@@ -62,8 +61,6 @@ impl DoubleConsoleGameCodeEdit {
         output.set_text(&current_text);
 
         
-
-
         self.base.to_gd().emit_signal("on_submited_text", &[code.to_variant()]);
         self.base.to_gd().emit_signal("on_parsed_text", &[output.get_text().to_variant()]); 
     }
